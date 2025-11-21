@@ -1,1 +1,99 @@
-<h1>It works</h1>
+🎯 Workflow: Adding a New Game
+
+We’ll treat it like a template system. Each game gets its own HTML page inside /games, and your Google Site links to that page.
+
+1️⃣ Prepare a Template Page
+
+Create one HTML wrapper template that you can copy for every game. Example:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>GAME_TITLE</title>
+  <script src="https://cdn.jsdelivr.net/npm/@ruffle-rs/ruffle@0.2.0-nightly.2025.10.2/ruffle.min.js"></script>
+  <style>
+    html, body { margin:0; padding:0; background:black; overflow:hidden; width:100%; height:100%; }
+    #flash-container { position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); }
+  </style>
+</head>
+<body>
+<div id="flash-container"></div>
+<script>
+const container = document.getElementById("flash-container");
+window.addEventListener("DOMContentLoaded", () => {
+  const ruffle = window.RufflePlayer?.newest() || window.RufflePlayer?.createPlayer();
+  const player = ruffle.createPlayer();
+  player.style.width = "100%";
+  player.style.height = "100%";
+  container.appendChild(player);
+  player.load("GAME_URL");
+});
+</script>
+</body>
+</html>
+
+
+Replace GAME_TITLE with the name of your game.
+
+Replace GAME_URL with your SWF/HTML5 file URL.
+
+This is your master template — you don’t need to rewrite all the CSS/JS every time.
+
+2️⃣ Upload the Game File
+
+Go to /games in your repo.
+
+Click Add file → Upload files.
+
+Upload the SWF or HTML5 game file.
+
+3️⃣ Create a New HTML Page for the Game
+
+Click Add file → Create new file.
+
+Name it:
+
+games/game-name.html
+
+
+Copy your template HTML into the editor.
+
+Replace GAME_TITLE and GAME_URL with the new game’s info.
+
+Commit the file.
+
+4️⃣ Update Your Google Site
+
+Select the image or text for the game.
+
+Click the link icon → paste the new game page URL:
+
+https://ebaro315.github.io/game-host/games/game-name.html
+
+
+Apply.
+
+✅ 5️⃣ Repeat!
+
+Each new game just means:
+
+Upload SWF/HTML5 →
+
+Copy template HTML →
+
+Update title & URL →
+
+Commit →
+
+Link on Google Sites.
+
+No need to touch CSS/JS every time — the template handles fullscreen automatically.
+
+💡 Pro tip:
+
+Keep a single local .html template file.
+
+When adding a new game, just duplicate it, change 2 values (title & URL), and upload.
+
+This is literally a 2-minute process per game once you get it rolling.
